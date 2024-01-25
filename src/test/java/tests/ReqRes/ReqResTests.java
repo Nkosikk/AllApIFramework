@@ -20,6 +20,6 @@ public class ReqResTests {
                 assertThat().
                 statusCode(create_success_status_COde).
                 body("name",containsString("Nkosi")).
-                body("job",containsString("Tester"));
+                body("job",containsString("TeSter"));
     }
 }
