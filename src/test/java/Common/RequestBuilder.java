@@ -10,6 +10,7 @@ import static io.restassured.RestAssured.*;
 public class RequestBuilder {
 
     public static String stationID;
+    public static String StateProvince;
 
     public static Response createEmployeeResponse() {
         return given().
@@ -73,6 +74,20 @@ public class RequestBuilder {
                 log().all().
                 extract().response();
         stationID = response.jsonPath().getString("ID");
+        return response;
+    }
+
+    public static Response getSTateProvinceResponse() {
+        Response response= given().
+                queryParam("country","South Africa").
+                when().
+                contentType(Json_Content_Type).
+                get("http://universities.hipolabs.com/search").
+                then().
+                log().all().
+                extract().response();
+
+        StateProvince=response.jsonPath().getString("[0].state-province");
         return response;
     }
 
